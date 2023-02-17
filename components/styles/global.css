@@ -13,6 +13,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Nunito Sans';
 }
 
 body{
@@ -30,5 +31,10 @@ main{
 
 #navbar{
     height: 80px;
-    background-color: var(--DarkModeElements)
+    background-color: var(--DarkModeElements);
+
+    display: flex;
+    justify-content: space-around;
+    gap: 550px;
+    align-items: center;
 }

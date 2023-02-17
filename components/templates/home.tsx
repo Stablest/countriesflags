@@ -10,7 +10,7 @@ export default function Home(){
             <Navbar></Navbar>
             <main className="container">
                 <MiniHeader></MiniHeader>
-                <div className="container-country">
+                <div className="container-countries">
                     <CountrySummary></CountrySummary>
                     <CountrySummary></CountrySummary>
                     <CountrySummary></CountrySummary>
