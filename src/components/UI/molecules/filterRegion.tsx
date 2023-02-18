@@ -1,13 +1,14 @@
 import '../../styles/home.css'
 import '../../scripts/optionScript'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-export default function FilterRegion(){
-    const URL = 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
+export default function FilterRegion(props:any){
     const ref = useRef(null)
-    // useEffect(() => buttom(),[])
+    const [option, setOption] = useState('https://restcountries.com/v3/all?fields=name,capital,region,population,flags')
+    useEffect(() => {props.onRegionChange(option)}, [option, props.onRegionChange])
+
     return(
-        <select title='options' name="Scroll" ref={ref} className="region-select" onChange={value => optionsSelect}>
+        <select title='options' name="Scroll" ref={ref} className="region-select" onChange={event => optionsSelect(event)}>
             <option value="all">Filter by Region</option>
             <option value="africa">África</option>
             <option value="america">America</option>
@@ -17,36 +18,29 @@ export default function FilterRegion(){
         </select>
     )
     
-    function allCountries():string{
-        return 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
-    }
-
-    function africaCountries():string{
-        return 'https://restcountries.com/v3/region/africa?fields=name,capital,region,population,flags'
-    }
-
-    function americaCountries():string{
-        return 'https://restcountries.com/v3/region/america?fields=name,capital,region,population,flags'
-    }
-
-    function asiaCountries():string{
-        return 'https://restcountries.com/v3/region/asia?fields=name,capital,region,population,flags'
-    }
-
-    function europeCountries():string{
-        return 'https://restcountries.com/v3/region/europe?fields=name,capital,region,population,flags'
-    }
-
-    function oceaniaCountries():string{
-        return 'https://restcountries.com/v3/region/oceania?fields=name,capital,region,population,flags'
-    }
-    
-    function optionsSelect(){
+    function optionsSelect(event:any){
         const element:any = ref.current
-        console.log(element[1])
         if(element){
-            if(element.options[element.selectIndex].value == 'africa')
-                console.log("africa")
+            switch(event.target.value){
+                case 'all':
+                    setOption('https://restcountries.com/v3/all?fields=name,capital,region,population,flags')
+                    break
+                case 'africa':
+                    setOption('https://restcountries.com/v3/region/africa?fields=name,capital,region,population,flags')
+                    break
+                case 'america':
+                    setOption('https://restcountries.com/v3/region/america?fields=name,capital,region,population,flags')
+                    break
+                case 'asia':
+                    setOption('https://restcountries.com/v3/region/asia?fields=name,capital,region,population,flags')
+                    break
+                case 'europe':
+                    setOption('https://restcountries.com/v3/region/europe?fields=name,capital,region,population,flags')
+                    break
+                case 'oceania':
+                    setOption('https://restcountries.com/v3/region/oceania?fields=name,capital,region,population,flags')
+                    break
+            }
         }
     }
 }

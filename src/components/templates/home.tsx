@@ -9,15 +9,16 @@ export default function Home(){
     const URL = 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
     // const countries = new Array<CountrySummaryType>()
     const [countries, setCountries] = useState<CountrySummaryType[]>([])
-    // countries.push(...allCountries())
-    useEffect(() => {allCountries()},[])
+    const [region, setRegion] = useState(URL)
 
+    useEffect(() => {allCountries()},[region])
+    useEffect(() => {handleRegionChange},[region])
 
     return(
         <>
             <Navbar></Navbar>
             <main className="container">
-                <MiniHeader></MiniHeader>
+                <MiniHeader regionChange={handleRegionChange}></MiniHeader>
                 <div className="container-countries">
                     <CountrySummary country={countries[0] ? randomCountry() : 'aaaa'}></CountrySummary>
                     <CountrySummary country={countries[0] ? randomCountry() : 'aaaa'}></CountrySummary>
@@ -36,8 +37,13 @@ export default function Home(){
         </>
     )
 
+    function handleRegionChange(selectedRegion:any){
+        setRegion(selectedRegion)
+        console.log(region)
+    }
+
     async function allCountries():Promise<void>{
-        const response = await fetch(URL)
+        const response = await fetch(region)
         const data = await response.json()
         let countries = new Array<CountrySummaryType>()
         data.forEach( (country:any) => {
@@ -51,7 +57,7 @@ export default function Home(){
             countries.push(countryAux)
         });
         setCountries(countries)
-        console.log("aa")
+        console.log('cccc')
     }
 
     function randomCountry():CountrySummaryType{
