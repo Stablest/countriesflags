@@ -1,7 +1,7 @@
 import '../../styles/home.css'
 
-export default function CountryName(){
+export default function CountryName(props:any){
     return(
-        <h3 id="country-name">Nome</h3>
+        <h3 id="country-name">{props.name}</h3>
     )
 }

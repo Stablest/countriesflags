@@ -21,7 +21,6 @@ body{
     color: var(--DarkModeTextAndLightModeElements);
     display: flex;
     justify-content: center;
-
 }
 
 main{

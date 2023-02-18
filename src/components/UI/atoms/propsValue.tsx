@@ -1,7 +1,7 @@
 import '../../styles/home.css'
 
-export default function PropsValue(){
+export default function PropsValue(props:any){
     return(
-        <span id='props-value'>Value</span>
+        <span id='props-value'>{props.value}</span>
     )
 }

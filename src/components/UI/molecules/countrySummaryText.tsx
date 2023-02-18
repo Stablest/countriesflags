@@ -4,23 +4,23 @@ import PropsValue from "../atoms/propsValue"
 import '../../styles/home.css'
 
 
-export default function CountrySummaryText(){
+export default function CountrySummaryText(props:any){
     return(
         <div className='box'>
             <div id='summary-description'>
-                <CountryName></CountryName>
+                <CountryName name={props.country.name}></CountryName>
                 <div className="props">
                     <div className="props-name-value">
-                        <CountryProps></CountryProps>
-                        <PropsValue></PropsValue>
+                        <CountryProps props={'Population'}></CountryProps>
+                        <PropsValue value={props.country.population}></PropsValue>
                     </div>
                     <div className="props-name-value">
-                        <CountryProps></CountryProps>
-                        <PropsValue></PropsValue>
+                        <CountryProps props={'Region'}></CountryProps>
+                        <PropsValue value={props.country.region}></PropsValue>
                     </div>
                     <div className="props-name-value">
-                        <CountryProps></CountryProps>
-                        <PropsValue></PropsValue>
+                        <CountryProps props={'Capital'}></CountryProps>
+                        <PropsValue value={props.country.capital}></PropsValue>
                     </div>
                 </div>
             </div>
