@@ -2,16 +2,8 @@ import Navbar from "../UI/organisms/navbar"
 import MiniHeader from "../UI/organisms/miniHeader"
 import CountrySummary from "../UI/organisms/countrySummary"
 import '../styles/home.css'
-import CountrySummaryText from "../UI/molecules/countrySummaryText"
+import type { CountrySummaryType } from '../interfaces/summaryInterface'
 import { useEffect, useState } from "react"
-
-type CountrySummaryType = {
-    flags:string,
-    name:string,
-    population:number,
-    region:string,
-    capital:string,
-}
 
 export default function Home(){
     const URL = 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
@@ -19,6 +11,8 @@ export default function Home(){
     const [countries, setCountries] = useState<CountrySummaryType[]>([])
     // countries.push(...allCountries())
     useEffect(() => {allCountries()},[])
+
+
     return(
         <>
             <Navbar></Navbar>
@@ -50,13 +44,14 @@ export default function Home(){
             const countryAux:CountrySummaryType = {
                 flags : country.flags.pop(),
                 name : country.name.common,
-                population : country.population,
+                population : country.population.toLocaleString(),
                 region : country.region,
                 capital : country.capital,
             }
             countries.push(countryAux)
         });
         setCountries(countries)
+        console.log("aa")
     }
 
     function randomCountry():CountrySummaryType{
