@@ -1,11 +1,10 @@
 import SearchBar from "../molecules/searchBar"
 import FilterRegion from "../molecules/filterRegion"
-import { useEffect,useState } from "react"
 
-export default function MiniHeader(props:any){
-    return(
+export default function MiniHeader(props: any) {
+    return (
         <div className="container-mini-header">
-            <SearchBar></SearchBar>
+            <SearchBar countryByText={props.countryByText}></SearchBar>
             <FilterRegion onRegionChange={props.regionChange}></FilterRegion>
         </div>
     )
