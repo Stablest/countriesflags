@@ -81,53 +81,66 @@ export default function Home() {
     }
 
     function getPageCountries(): void {
-        if (allCountries) {
-            if (region == 'all')
-                setPageCountries(allCountries)
-            else {
-                let auxList: CountrySummaryType[] = []
-
-                allCountries.forEach(country => {
-                    if (country.region.toUpperCase() == region.toUpperCase())
-                        auxList.push(country)
-                })
-                let auxList2 = new Array<CountrySummaryType>()
-                let availableIndex = new Array<number>()
-
-                for (let i = 0; i < auxList.length; i++)
-                    availableIndex.push(i)
-                while (auxList.length != 0) {
-                    const randomNumber = (Math.floor(Math.random() * 999)) % auxList.length
-                    auxList2.push(auxList[randomNumber])
-                    availableIndex.splice(randomNumber, 1)
-                    auxList.splice(randomNumber, 1)
-                }
-
-                auxList2.forEach(country => {
-                    auxList.push(country)
-                })
-
-                if (countryByText.length != 0) {
-                    let list = new Array<CountrySummaryType>()
-                    for (let i = 0; i < auxList.length; i++) {
-                        if (auxList[i].name.includes(countryByText)) {
-                            list.push(auxList[i])
-                        }
-                    }
-                    if (list.length != 0) {
-                        auxList.splice(0)
-                        list.forEach(country => {
-                            auxList.push(country)
-                        })
-                    }
-                    else
-                        auxList.splice(0)
-                }
-                setPageCountries(auxList)
+        if (allCountries.length != 0) {
+            let countryList: CountrySummaryType[] = []
+            if (region == 'all') {
+                countryList = [...randomCountriesList([...allCountries])]
+                countryList = [...compareCountryName(countryList)]
+                console.log('all')
             }
+            else {
+                countryList = [...compareRegion(countryList)]
+                countryList = [...randomCountriesList(countryList)]
+                countryList = [...compareCountryName(countryList)]
+            }
+            setPageCountries(countryList)
+            console.log('getPage : OK')
         }
     }
 
+    function compareRegion(countryList: CountrySummaryType[]): CountrySummaryType[] {
+        allCountries.forEach(country => {
+            if (country.region.toUpperCase() == region.toUpperCase())
+                countryList.push(country)
+        })
+        return countryList
+    }
+
+    function randomCountriesList(countryList: CountrySummaryType[]): CountrySummaryType[] {
+        const auxList: CountrySummaryType[] = []
+        const availableIndex: number[] = []
+        for (let i = 0; i < countryList.length; i++)
+            availableIndex.push(i)
+        while (countryList.length != 0) {
+            const randomNumber = (Math.floor(Math.random() * 999)) % countryList.length
+            auxList.push(countryList[randomNumber])
+            availableIndex.splice(randomNumber, 1)
+            countryList.splice(randomNumber, 1)
+        }
+        return auxList
+    }
+
+
+
+    function compareCountryName(countryList: CountrySummaryType[]): CountrySummaryType[] {
+        if (countryByText.length != 0) {
+            let list = new Array<CountrySummaryType>()
+            for (let i = 0; i < countryList.length; i++) {
+                if (countryList[i].name.toUpperCase().includes(countryByText.toUpperCase())) {
+                    list.push(countryList[i])
+                }
+            }
+            if (list.length != 0) {
+                countryList.splice(0)
+                list.forEach(country => {
+                    countryList.push(country)
+                })
+            }
+            else
+                countryList.splice(0)
+        }
+        return countryList
+    }
     // setPerson({
     //     ...person, // Copy the old fields
     //     firstName: e.target.value // But override this one
