@@ -1,12 +1,20 @@
 import CountrySummaryText from "../molecules/countrySummaryText";
 import '../../styles/home.css'
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import home from '../../templates/home'
 
 export default function CountrySummary(props: any) {
+    // const ref = useRef()
     // useEffect(() => {
-    //     return () => { props.add(props.index) }
-    // }, [])
+    //     ref.current = props.country
+    //     console.log('MOUNT COUNTRY : ', props.country.name)
+    //     return () => {
+    //         props.add(props.pageCountries?.indexOf(props.country))
+    //         // console.log(props.pageCountries?.indexOf(props.country))
+    //         console.log('DISMOUNT : ', props.pageCountries?.indexOf(props.country))
+    //     }//indexof
+
+    // }, [props.country])
 
     return (
         <div id='country-summary'>
