@@ -21,7 +21,7 @@ export default function Home() {
     const [region, setRegion] = useState('all')
     const [countryByText, setCountryByText] = useState<string>('')
 
-
+    // const countries: CountrySummaryType[] = []
 
     useEffect(() => { getCountries() }, [])
     useEffect(() => { getPageCountries() }, [allCountries, region, countryByText])
@@ -38,14 +38,10 @@ export default function Home() {
         </>
     )
 
-    // const countrySummaries = useMemo(() => {
-    //     return randomCountry();
-    // }, [pageCountries]);
-
     function multiCountrySummary(number: number) {
         let countriesList = [];
         for (let i = 0; i < number; i++) {
-            pageCountries[i] ? countriesList.push(<CountrySummary key={i} index={i} pageCountries={pageCountries} country={pageCountries[i] ? pageCountries[i] : 'error'} />) : 'error' // 231 229 236 31
+            pageCountries[i] ? countriesList.push(<CountrySummary key={i} index={i} pageCountries={pageCountries} country={pageCountries[i] ? pageCountries[i] : 'error'} />) : 'error'
         }
         return (
             <>{countriesList}</>
@@ -69,7 +65,7 @@ export default function Home() {
 
     async function getCountries(): Promise<void> {
         const data = await fetchData(URL)
-        let countries = new Array<CountrySummaryType>()
+        const countries: CountrySummaryType[] = []
         data.forEach((country: any) => {
             const countryAux: CountrySummaryType = {
                 flags: country.flags.pop(),
@@ -89,7 +85,7 @@ export default function Home() {
             if (region == 'all')
                 setPageCountries(allCountries)
             else {
-                let auxList = new Array<CountrySummaryType>()
+                let auxList: CountrySummaryType[] = []
 
                 allCountries.forEach(country => {
                     if (country.region.toUpperCase() == region.toUpperCase())
@@ -116,7 +112,6 @@ export default function Home() {
                     for (let i = 0; i < auxList.length; i++) {
                         if (auxList[i].name.includes(countryByText)) {
                             list.push(auxList[i])
-                            console.log('item add')
                         }
                     }
                     if (list.length != 0) {
@@ -124,13 +119,10 @@ export default function Home() {
                         list.forEach(country => {
                             auxList.push(country)
                         })
-                        console.log('LISTA : ', auxList)
                     }
                     else
                         auxList.splice(0)
                 }
-                console.log(auxList.length)
-
                 setPageCountries(auxList)
             }
         }
