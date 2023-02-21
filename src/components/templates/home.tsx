@@ -4,11 +4,10 @@ import CountrySummary from "../UI/organisms/countrySummary"
 import '../styles/home.css'
 import type { CountrySummaryType } from '../interfaces/summaryInterface'
 import { useEffect, useState, useMemo } from "react"
-import React from "react"
 
 export default function Home() {
     const URL = 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
-    const baseCountry: CountrySummaryType = {
+    const baseCountry: CountrySummaryType = { // Base country for when an error occurs(e.g., if getCountries() can't get data from the api). 
         flags: '',
         name: '',
         population: 0,
@@ -20,15 +19,27 @@ export default function Home() {
     const [pageCountries, setPageCountries] = useState<CountrySummaryType[]>([])
     const [region, setRegion] = useState('all')
     const [countryByText, setCountryByText] = useState<string>('')
+    const [theme, setTheme] = useState('src/components/styles/blackTheme.css')
 
-    // const countries: CountrySummaryType[] = []
+    useEffect(() => { getCountries() }, []) // Run one time when the Home component is rendered.
+    useEffect(() => { getPageCountries() }, [allCountries, region, countryByText]) // Runs everytime allCountries, region or countryByText are updated.
+    useEffect(() => {
+        const head = document.head;
+        let link = document.createElement("link");
 
-    useEffect(() => { getCountries() }, [])
-    useEffect(() => { getPageCountries() }, [allCountries, region, countryByText])
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = theme;
+
+        head.appendChild(link);
+
+        return () => { head.removeChild(link); }
+
+    }, [theme])
 
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar onThemeChange={handleThemeSwitch}></Navbar>
             <main className="container">
                 <MiniHeader regionChange={handleRegionChange} countryByText={handleSearchBar}></MiniHeader>
                 <div className="container-countries">
@@ -41,7 +52,7 @@ export default function Home() {
     function multiCountrySummary(number: number) {
         let countriesList = [];
         for (let i = 0; i < number; i++) {
-            pageCountries[i] ? countriesList.push(<CountrySummary key={i} index={i} pageCountries={pageCountries} country={pageCountries[i] ? pageCountries[i] : 'error'} />) : 'error'
+            pageCountries[i] ? countriesList.push(<CountrySummary key={i} country={pageCountries[i] ? pageCountries[i] : baseCountry} />) : 'error'
         }
         return (
             <>{countriesList}</>
@@ -57,13 +68,18 @@ export default function Home() {
         setCountryByText(event.target.value)
     }
 
+    function handleThemeSwitch(theme: string) {
+        setTheme(theme)
+        console.log('Tema : ', theme)
+    }
+
     async function fetchData(where: string): Promise<any> {
         const response = await fetch(where)
         const data = await response.json()
         return data
     }
 
-    async function getCountries(): Promise<void> {
+    async function getCountries(): Promise<void> { // Get and setState of all countries returned by the API.
         const data = await fetchData(URL)
         const countries: CountrySummaryType[] = []
         data.forEach((country: any) => {
@@ -80,30 +96,26 @@ export default function Home() {
         setAllCountries(countries)
     }
 
-    function getPageCountries(): void {
+    function getPageCountries(): void { // Set countries information on page, based on all countries and filters applied by user
         if (allCountries.length != 0) {
             let countryList: CountrySummaryType[] = []
-            if (region == 'all') {
-                countryList = [...randomCountriesList([...allCountries])]
-                countryList = [...compareCountryName(countryList)]
-                console.log('all')
-            }
-            else {
-                countryList = [...compareRegion(countryList)]
-                countryList = [...randomCountriesList(countryList)]
-                countryList = [...compareCountryName(countryList)]
-            }
+            countryList = compareRegion(countryList)
+            countryList = randomCountriesList([...countryList])
+            countryList = compareCountryName(countryList)
             setPageCountries(countryList)
             console.log('getPage : OK')
         }
     }
 
     function compareRegion(countryList: CountrySummaryType[]): CountrySummaryType[] {
-        allCountries.forEach(country => {
-            if (country.region.toUpperCase() == region.toUpperCase())
-                countryList.push(country)
-        })
-        return countryList
+        if (region !== 'all') {
+            allCountries.forEach(country => {
+                if (country.region.toUpperCase() == region.toUpperCase())
+                    countryList.push(country)
+            })
+            return (countryList) // Return only countries of specified region
+        }
+        return allCountries // Return all countries if region equals all
     }
 
     function randomCountriesList(countryList: CountrySummaryType[]): CountrySummaryType[] {
@@ -120,8 +132,6 @@ export default function Home() {
         return auxList
     }
 
-
-
     function compareCountryName(countryList: CountrySummaryType[]): CountrySummaryType[] {
         if (countryByText.length != 0) {
             let list = new Array<CountrySummaryType>()
@@ -130,17 +140,11 @@ export default function Home() {
                     list.push(countryList[i])
                 }
             }
-            if (list.length != 0) {
-                countryList.splice(0)
-                list.forEach(country => {
-                    countryList.push(country)
-                })
-            }
-            else
-                countryList.splice(0)
+            countryList = [...list]
         }
         return countryList
     }
+
     // setPerson({
     //     ...person, // Copy the old fields
     //     firstName: e.target.value // But override this one

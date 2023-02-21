@@ -1,0 +1,62 @@
+:root {
+  --Elements: hsl(0, 0%, 100%);
+  --Background: hsl(0, 0%, 98%);
+  --TextAndLightModeElements: hsl(200, 15%, 8%);
+
+  --VeryDarkBlueText: hsl(200, 15%, 8%);
+  --DarkGrayInput: #858585;
+  --VeryLightGrayBackground: hsl(0, 0%, 98%);
+}
+
+::placeholder {
+  color: var(--DarkGrayInput);
+}
+
+h2 {
+  color: var(--TextAndLightModeElements);
+}
+
+.container {
+  background-color: var(--Background);
+}
+
+.box {
+  background-color: var(--Elements);
+}
+
+.search-bar-box {
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px #ececec;
+}
+
+.search-bar-box img {
+  filter: invert(52%) sepia(0%) saturate(0%) hue-rotate(242deg) brightness(100%)
+    contrast(99%);
+}
+
+.region-select {
+  color: var(--TextAndLightModeElements);
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px #ececec;
+}
+
+#div-img img {
+  box-shadow: 3px 3px 3px #ececec;
+}
+
+#country-summary {
+  box-shadow: 3px 3px 3px #ececec;
+}
+
+#props-value {
+  color: var(--LightModeInput);
+}
+
+#themeSwitch {
+  color: var(--TextAndLightModeElements);
+}
+
+#search-description input {
+  background-color: var(--Elements);
+  color: var(--TextAndLightModeElements);
+}
