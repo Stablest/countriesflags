@@ -9,8 +9,8 @@ export default function ThemeSwitch(props: any) {
         <div id="themeSwitch">
             <button onClick={e => handleThemeChange()}>
                 <img src="./assets/moon.svg" alt="moon-icon" className='dark-mode-img' />
+                <span>Dark Mode</span>
             </button>
-            <span>Dark Mode</span>
         </div>
     )
 
@@ -18,11 +18,9 @@ export default function ThemeSwitch(props: any) {
         switch (themeUrl) {
             case 'src/components/styles/blackTheme.css':
                 setThemeUrl('src/components/styles/whiteTheme.css')
-                console.log('a')
                 break
             case 'src/components/styles/whiteTheme.css':
                 setThemeUrl('src/components/styles/blackTheme.css')
-                console.log('b')
                 break
         }
     }

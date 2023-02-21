@@ -6,10 +6,11 @@
 }
 
 body {
-  background: black;
   color: var(--TextAndLightModeElements);
   display: flex;
   justify-content: center;
+
+  overflow: scroll;
 }
 
 main {
@@ -20,9 +21,11 @@ main {
 #navbar {
   height: 80px;
   background-color: var(--Elements);
+  /* margin: 0px 100px;
+   */
+  padding: 0px 60px;
 
   display: flex;
-  justify-content: space-around;
-  gap: 550px;
+  justify-content: space-between;
   align-items: center;
 }

@@ -19,6 +19,7 @@ export default function Home() {
     const [pageCountries, setPageCountries] = useState<CountrySummaryType[]>([])
     const [region, setRegion] = useState('all')
     const [countryByText, setCountryByText] = useState<string>('')
+    const [pseudoPage, setPseudoPage] = useState(0)
     const [theme, setTheme] = useState('src/components/styles/blackTheme.css')
 
     useEffect(() => { getCountries() }, []) // Run one time when the Home component is rendered.
@@ -32,10 +33,11 @@ export default function Home() {
         link.href = theme;
 
         head.appendChild(link);
-
         return () => { head.removeChild(link); }
-
     }, [theme])
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    }, [pseudoPage])
 
     return (
         <>
@@ -43,15 +45,15 @@ export default function Home() {
             <main className="container">
                 <MiniHeader regionChange={handleRegionChange} countryByText={handleSearchBar}></MiniHeader>
                 <div className="container-countries">
-                    {multiCountrySummary(20)}
+                    {multiCountrySummary()}
                 </div>
             </main>
         </>
     )
 
-    function multiCountrySummary(number: number) {
+    function multiCountrySummary() {
         let countriesList = [];
-        for (let i = 0; i < number; i++) {
+        for (let i = 0; i < (pseudoPage + 1) * 16; i++) {
             pageCountries[i] ? countriesList.push(<CountrySummary key={i} country={pageCountries[i] ? pageCountries[i] : baseCountry} />) : 'error'
         }
         return (
@@ -71,6 +73,19 @@ export default function Home() {
     function handleThemeSwitch(theme: string) {
         setTheme(theme)
         console.log('Tema : ', theme)
+    }
+
+    function handleScroll(): void {
+        const windowHeight = document.documentElement.clientHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const isBottom = scrollTop + windowHeight >= documentHeight;
+        console.log('ISBOTTOM> ', isBottom)
+
+        if (isBottom) {
+            setPseudoPage(pseudoPage + 1);
+            console.log('page')
+        }
     }
 
     async function fetchData(where: string): Promise<any> {
@@ -136,9 +151,8 @@ export default function Home() {
         if (countryByText.length != 0) {
             let list = new Array<CountrySummaryType>()
             for (let i = 0; i < countryList.length; i++) {
-                if (countryList[i].name.toUpperCase().includes(countryByText.toUpperCase())) {
+                if (countryList[i].name.toUpperCase().includes(countryByText.toUpperCase()))
                     list.push(countryList[i])
-                }
             }
             countryList = [...list]
         }

@@ -4,6 +4,10 @@
   --TextAndLightModeElements: hsl(0, 0%, 100%);
 }
 
+body {
+  background: black;
+}
+
 ::placeholder {
   color: var(--TextAndLightModeElements);
 }
@@ -44,7 +48,7 @@ h2 {
   color: var(--LightModeInput);
 }
 
-#themeSwitch {
+#themeSwitch button {
   color: var(--TextAndLightModeElements);
 }
 
