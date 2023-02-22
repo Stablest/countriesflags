@@ -1,18 +1,24 @@
-import Navbar from "../UI/organisms/navbar"
-import MiniHeader from "../UI/organisms/miniHeader"
-import CountrySummary from "../UI/organisms/countrySummary"
-import '../styles/home.css'
-import type { CountrySummaryType } from '../interfaces/summaryInterface'
-import { useEffect, useState, useMemo } from "react"
+import Navbar from "../../UI/organisms/navbar"
+import MiniHeader from "../../UI/organisms/miniHeader"
+import CountrySummary from "../../UI/organisms/countrySummary/countrySummary"
+import './home.css'
+import type { CountrySummaryType } from '../../interfaces/summaryInterface'
+import { useEffect, useState } from "react"
 
 export default function Home() {
-    const URL = 'https://restcountries.com/v3/all?fields=name,capital,region,population,flags'
+    const URL = 'https://restcountries.com/v3/all?fields=flags,name,currencies,population,tld,region,languages,subregion,capital,borders'
     const baseCountry: CountrySummaryType = { // Base country for when an error occurs(e.g., if getCountries() can't get data from the api). 
         flags: '',
         name: '',
+        nativeName: {},
+        topLevelDomain: [],
         population: 0,
+        currencies: {},
         region: '',
-        capital: '',
+        languages: {},
+        subRegion: '',
+        capital: [],
+        borderCountries: [],
     }
 
     const [allCountries, setAllCountries] = useState<CountrySummaryType[]>([])
@@ -20,28 +26,15 @@ export default function Home() {
     const [region, setRegion] = useState('all')
     const [countryByText, setCountryByText] = useState<string>('')
     const [pseudoPage, setPseudoPage] = useState(0)
-    const [theme, setTheme] = useState('src/components/styles/blackTheme.css')
 
     useEffect(() => { getCountries() }, []) // Run one time when the Home component is rendered.
     useEffect(() => { getPageCountries() }, [allCountries, region, countryByText]) // Runs everytime allCountries, region or countryByText are updated.
-    useEffect(() => {
-        const head = document.head;
-        let link = document.createElement("link");
-
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.href = theme;
-
-        head.appendChild(link);
-        return () => { head.removeChild(link); }
-    }, [theme])
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
     }, [pseudoPage])
 
     return (
         <>
-            <Navbar onThemeChange={handleThemeSwitch}></Navbar>
             <main className="container">
                 <MiniHeader regionChange={handleRegionChange} countryByText={handleSearchBar}></MiniHeader>
                 <div className="container-countries">
@@ -54,7 +47,7 @@ export default function Home() {
     function multiCountrySummary() {
         let countriesList = [];
         for (let i = 0; i < (pseudoPage + 1) * 16; i++) {
-            pageCountries[i] ? countriesList.push(<CountrySummary key={i} country={pageCountries[i] ? pageCountries[i] : baseCountry} />) : 'error'
+            pageCountries[i] ? countriesList.push(<CountrySummary key={i} id={i} country={pageCountries[i] ? pageCountries[i] : baseCountry} />) : 'error'
         }
         return (
             <>{countriesList}</>
@@ -68,11 +61,6 @@ export default function Home() {
     function handleSearchBar(event: any) {
         console.log('texto : ', event.target.value)
         setCountryByText(event.target.value)
-    }
-
-    function handleThemeSwitch(theme: string) {
-        setTheme(theme)
-        console.log('Tema : ', theme)
     }
 
     function handleScroll(): void {
@@ -101,9 +89,15 @@ export default function Home() {
             const countryAux: CountrySummaryType = {
                 flags: country.flags.pop(),
                 name: country.name.common,
+                nativeName: country.name.nativeName,
+                topLevelDomain: [...country.tld],
                 population: country.population.toLocaleString(),
+                currencies: country.currencies,
                 region: country.region,
-                capital: country.capital,
+                languages: country.languages,
+                subRegion: country.subregion,
+                capital: [...country.capital],
+                borderCountries: [...country.borders],
             }
             countries.push(countryAux)
         });

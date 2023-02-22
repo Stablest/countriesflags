@@ -1,0 +1,50 @@
+::placeholder {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+#themeSwitch button {
+  width: 40px;
+  background-color: transparent;
+  border-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 600;
+  width: 100px;
+}
+
+#themeSwitchspan span {
+  font-weight: 800;
+  width: 200px;
+}
+
+.container-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 93px;
+  justify-content: flex-start;
+
+  margin: 0 60px;
+}
+
+.container-mini-header {
+  width: 100%;
+  margin: 50px;
+  padding: 0px 60px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.small-img {
+  width: 20px;
+  margin: 0px 25px;
+}
+
+.dark-mode-img {
+  width: 25px;
+  height: 25px;
+}

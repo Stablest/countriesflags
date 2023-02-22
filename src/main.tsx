@@ -1,29 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from './components/templates/home'
+import Home from './components/templates/home/home'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root from "./routes/root";
 import ErrorPage from "./error-page";
-import CountryDetails from './routes/countryDetails'
+import CountryDetails from './routes/countryDetailsPage'
+import MainPage from './routes/MainPage'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <MainPage />,
     errorElement: <ErrorPage />,
     // children: [ // nested route
     //   {
     //     path: "contacts/:contactId",
-    //     element: <Contact />,
+    //     element: <Home />,
     //   },
     // ],
   },
   {
-    path: "countryDetails/:countryId",
+    path: "countryDetails/",
     element: <CountryDetails />,
   },
 ]);
@@ -31,6 +31,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    {/* <Home /> */}
   </React.StrictMode>,
 )

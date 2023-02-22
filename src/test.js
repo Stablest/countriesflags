@@ -1,7 +1,16 @@
 let array1 = [5, 5, 5, 5, 5];
 let array2 = [1, 2, 3];
 
-array = [];
+let array = [5];
+
+let obj = {
+  num: 1,
+  string: "",
+};
+
+array = { ...array, ...obj };
+
+console.log(array);
 
 // array2 = array1;
 
@@ -25,3 +34,10 @@ array = [];
 // array.push(1);
 // console.log(array);
 // array2 = [...array];
+
+// for (let [key, value] of Object.entries(country.currencies)) {
+//     console.log(key, value);
+// }
+// var getProperty = function (propertyName) {
+//     return obj[propertyName];
+// };

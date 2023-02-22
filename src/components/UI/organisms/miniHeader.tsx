@@ -1,5 +1,5 @@
-import SearchBar from "../molecules/searchBar"
-import FilterRegion from "../molecules/filterRegion"
+import SearchBar from "../molecules/searchBar/searchBar"
+import FilterRegion from "../molecules/filterRegion/filterRegion"
 
 export default function MiniHeader(props: any) {
     return (

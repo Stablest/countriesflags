@@ -1,4 +1,5 @@
-import SearchDescription from "../atoms/searchDescription";
+import './searchBar.css'
+import SearchDescription from '../../atoms/searchDescription/searchDescription'
 
 export default function SearchBar(props: any) {
     return (

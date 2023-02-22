@@ -1,4 +1,4 @@
-import '../../styles/home.css'
+import './searchDescription.css'
 
 export default function SearchDescription(props: any) {
     return (

@@ -1,4 +1,4 @@
-import '../../styles/home.css'
+import './countryProps.css'
 
 export default function CountryProps(props: any) {
     return (

@@ -1,4 +1,4 @@
-import '../../styles/home.css'
+import './filterRegion.css'
 
 export default function FilterRegion(props: any) {
 

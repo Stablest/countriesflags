@@ -1,11 +1,11 @@
-import CountryName from "../atoms/countryName"
-import CountryProps from "../atoms/countryProps"
-import PropsValue from "../atoms/propsValue"
-import '../../styles/home.css'
+import CountryName from "../../atoms/countryName/countryName"
+import CountryProps from "../../atoms/countryProps/countryProps"
+import PropsValue from "../../atoms/propsValue/propsValue"
+import './countrySummaryText.css'
 
 
-export default function CountrySummaryText(props:any){
-    return(
+export default function CountrySummaryText(props: any) {
+    return (
         <div className='box'>
             <div id='summary-description'>
                 <CountryName name={props.country.name}></CountryName>

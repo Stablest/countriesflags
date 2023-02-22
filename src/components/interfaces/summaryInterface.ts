@@ -1,7 +1,13 @@
 export type CountrySummaryType = {
   flags: string;
   name: string;
+  nativeName: {};
+  topLevelDomain: string[];
   population: number;
+  currencies: {};
   region: string;
-  capital: string;
+  languages: {};
+  subRegion: string;
+  capital: string[];
+  borderCountries: string[];
 };
