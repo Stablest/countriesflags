@@ -6,12 +6,17 @@ import type { CountrySummaryType } from '../../interfaces/summaryInterface'
 import { useEffect, useState } from "react"
 
 export default function Home() {
-    const URL = 'https://restcountries.com/v3/all?fields=flags,name,currencies,population,tld,region,languages,subregion,capital,borders'
+    const URL = 'https://restcountries.com/v3/all?fields=flags,name,currencies,population,tld,region,languages,subregion,capital,borders,cca2,ccn3,cca3,cioc'
     const baseCountry: CountrySummaryType = { // Base country for when an error occurs(e.g., if getCountries() can't get data from the api). 
+        id: 0,
         flags: '',
         name: '',
         nativeName: {},
         topLevelDomain: [],
+        cca2: '',
+        ccn3: '',
+        cca3: '',
+        cioc: '',
         population: 0,
         currencies: {},
         region: '',
@@ -85,12 +90,17 @@ export default function Home() {
     async function getCountries(): Promise<void> { // Get and setState of all countries returned by the API.
         const data = await fetchData(URL)
         const countries: CountrySummaryType[] = []
-        data.forEach((country: any) => {
+        data.forEach((country: any, index: number) => {
             const countryAux: CountrySummaryType = {
+                id: index,
                 flags: country.flags.pop(),
                 name: country.name.common,
                 nativeName: country.name.nativeName,
                 topLevelDomain: [...country.tld],
+                cca2: country.cca2,
+                ccn3: country.ccn3,
+                cca3: country.cca3,
+                cioc: country.cioc,
                 population: country.population.toLocaleString(),
                 currencies: country.currencies,
                 region: country.region,

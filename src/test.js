@@ -1,16 +1,16 @@
-let array1 = [5, 5, 5, 5, 5];
-let array2 = [1, 2, 3];
+// let array1 = [5, 5, 5, 5, 5];
+// let array2 = [1, 2, 3];
 
-let array = [5];
+// // let array = [5];
 
-let obj = {
-  num: 1,
-  string: "",
-};
+// let obj = {
+//   num: 1,
+//   string: "",
+// };
 
-array = { ...array, ...obj };
+// array = { ...array, ...obj };
 
-console.log(array);
+// console.log(obj);
 
 // array2 = array1;
 

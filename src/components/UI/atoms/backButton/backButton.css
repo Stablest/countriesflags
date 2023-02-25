@@ -1,0 +1,18 @@
+#backButton {
+  width: 120px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: transparent;
+
+  font-weight: 600;
+}
+
+#backButton img {
+  width: 30px;
+  height: 25px;
+}

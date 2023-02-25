@@ -12,6 +12,10 @@ body {
   color: var(--TextAndLightModeElements);
 }
 
+a {
+  color: var(--TextAndLightModeElements);
+}
+
 h2 {
   color: var(--TextAndLightModeElements);
 }
@@ -55,4 +59,24 @@ h2 {
 #search-description input {
   background-color: var(--Elements);
   color: var(--TextAndLightModeElements);
+}
+
+#mini-country-box {
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px rgb(31, 31, 31);
+}
+
+#mini-country-box span {
+  color: var(--LightModeInput);
+}
+
+#backButton {
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px rgb(31, 31, 31);
+  color: var(--TextAndLightModeElements);
+}
+
+#backButton img {
+  filter: invert(97%) sepia(8%) saturate(74%) hue-rotate(42deg) brightness(116%)
+    contrast(100%);
 }

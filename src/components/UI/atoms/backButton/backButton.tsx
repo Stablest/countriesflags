@@ -1,8 +1,10 @@
+import './backButton.css'
+
 export default function BackButton() {
     return (
-        <button>
+        <button id='backButton'>
             <img src="/assets/back.svg" alt="back img" />
-            <span>Back</span>
+            Back
         </button>
     )
 }

@@ -42,3 +42,7 @@ main {
   align-items: center;
   /* border: 1px red solid; */
 }
+
+a {
+  text-decoration: none;
+}

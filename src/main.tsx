@@ -6,8 +6,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./error-page";
-import CountryDetails from './routes/countryDetailsPage'
+import CountryDetailsPage from './routes/countryDetailsPage'
 import MainPage from './routes/MainPage'
+import './components/styles/global.css'
 
 
 const router = createBrowserRouter([
@@ -23,8 +24,9 @@ const router = createBrowserRouter([
     // ],
   },
   {
-    path: "countryDetails/",
-    element: <CountryDetails />,
+    path: "countryDetails/:id",
+    element: <CountryDetailsPage />,
+    errorElement: <ErrorPage></ErrorPage>,
   },
 ]);
 

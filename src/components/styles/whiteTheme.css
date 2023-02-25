@@ -20,6 +20,10 @@ h2 {
   color: var(--TextAndLightModeElements);
 }
 
+a {
+  color: var(--TextAndLightModeElements);
+}
+
 .container {
   background-color: var(--Background);
 }
@@ -62,5 +66,20 @@ h2 {
 
 #search-description input {
   background-color: var(--Elements);
+  color: var(--TextAndLightModeElements);
+}
+
+#mini-country-box {
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px #ececec;
+}
+
+#mini-country-box span {
+  color: var(--TextAndLightModeElements);
+}
+
+#backButton {
+  background-color: var(--Elements);
+  box-shadow: 3px 3px 3px #ececec;
   color: var(--TextAndLightModeElements);
 }
