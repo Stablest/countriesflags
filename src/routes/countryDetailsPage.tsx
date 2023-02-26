@@ -1,7 +1,7 @@
 import Navbar from "../components/UI/organisms/navbar"
 import CountryDetailsTemp from "../components/templates/countryDetailsTemp/countryDetailsTemp"
 import '/src/components/styles/global.css'
-import { useLocation, useParams, useLoaderData } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CountrySummaryType } from "../components/interfaces/summaryInterface";
 
@@ -19,16 +19,11 @@ export default function CountryDetailsPage() {
         getCountries()
     }, [])
 
-
-
     useEffect(() => {
         let index: any = JSON.stringify(id)
         index = Number(index.replace(/[^0-9]/g, ""))
-        console.log(index)
-        console.log('All Countries : ', allCountries)
         if ((typeof index == 'number') && allCountries)
             setCountryInfo(allCountries[index])
-
     }, [allCountries])
 
     useEffect(() => {
@@ -56,7 +51,7 @@ export default function CountryDetailsPage() {
         data.forEach((country: any, index: number) => {
             const countryAux: CountrySummaryType = {
                 id: index,
-                flags: country.flags.pop(),
+                flags: country.flags.shift(),
                 name: country.name.common,
                 nativeName: country.name.nativeName,
                 topLevelDomain: [...country.tld],
@@ -74,7 +69,6 @@ export default function CountryDetailsPage() {
             }
             countries.push(countryAux)
         });
-        console.log('Get Countries : OK')
         setAllCountries(countries)
     }
 

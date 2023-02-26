@@ -15,7 +15,9 @@ export default function CountryDetailsTemp(props: any) {
                 </Link>
             </div>
             <div id="container-flag-info">
-                <img src={props.countryInfo.flags} alt="" />
+                <div className="container-img">
+                    <img src={props.countryInfo.flags} alt="" />
+                </div>
                 <CountryInfo allCountries={props.allCountries} countryInfo={props.countryInfo} />
             </div>
         </div>

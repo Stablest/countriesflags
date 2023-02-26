@@ -1,5 +1,7 @@
+import './countryName.css'
+
 export default function CountryName(props: any) {
     return (
-        <h3 id="country-name">{props.name}</h3>
+        <span id="country-name">{props.name}</span>
     )
 }

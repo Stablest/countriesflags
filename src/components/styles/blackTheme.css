@@ -33,6 +33,11 @@ h2 {
   box-shadow: 3px 3px 3px rgb(41, 41, 41);
 }
 
+.search-bar-box img {
+  filter: invert(97%) sepia(8%) saturate(74%) hue-rotate(42deg) brightness(116%)
+    contrast(100%);
+}
+
 .region-select {
   color: var(--TextAndLightModeElements);
   background-color: var(--Elements);
@@ -42,6 +47,10 @@ h2 {
 .dark-mode-img {
   filter: invert(97%) sepia(8%) saturate(74%) hue-rotate(42deg) brightness(116%)
     contrast(100%);
+}
+
+.container-img {
+  box-shadow: 3px 3px 3px rgb(41, 41, 41);
 }
 
 #country-summary {

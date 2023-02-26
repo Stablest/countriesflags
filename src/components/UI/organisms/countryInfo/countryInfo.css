@@ -5,7 +5,7 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 #country-info > div:nth-of-type(1) {
@@ -13,14 +13,25 @@
   margin: 0px 0px;
 }
 
-/* #country-info > div:first-of-type {
-  padding: 30px 0px;
-} */
+#semi-table {
+  display: flex;
+  justify-content: space-between;
+}
 
 .props-info {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 100px;
+}
+
+.row-gap {
+  display: flex;
+  row-gap: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 #country-info > div:last-of-type {

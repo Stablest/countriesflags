@@ -11,38 +11,45 @@ export default function CountryInfo(props: any) {
             <div>
                 <CountryName name={props.countryInfo.name} />
             </div>
-            <div className="props-info">
-                <div className="props-name-value">
-                    <CountryProps props='Native Name'></CountryProps>
-                    <PropsValue value={getPropertyValue(getPropertyValue(props.countryInfo.nativeName, 0), 0)}></PropsValue>
+            <div id="semi-table">
+                <div className="row-gap column" >
+                    <div className="props-name-value">
+                        <CountryProps props='Native Name'></CountryProps>
+                        <PropsValue value={getPropertyValue(getPropertyValue(props.countryInfo.nativeName, 0), 1)}></PropsValue>
+                    </div>
+                    <div className="props-name-value">
+                        <CountryProps props='Population'></CountryProps>
+                        <PropsValue value={props.countryInfo.population}></PropsValue>
+                    </div>
+                    <div className="props-name-value">
+                        <CountryProps props='Region'></CountryProps>
+                        <PropsValue value={props.countryInfo.region}></PropsValue>
+                    </div>
+                    <div className="props-name-value">
+                        <CountryProps props='Sub Region'></CountryProps>
+                        <PropsValue value={props.countryInfo.subRegion}></PropsValue>
+                    </div>
+
+                    <div className="props-name-value">
+                        <CountryProps props='Capital'></CountryProps>
+                        <PropsValue value={props.countryInfo.capital}></PropsValue>
+                    </div>
                 </div>
-                <div className="props-name-value">
-                    <CountryProps props='Top Level Domain'></CountryProps>
-                    <PropsValue value={props.countryInfo.topLevelDomain}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Population'></CountryProps>
-                    <PropsValue value={props.countryInfo.population}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Currencies'></CountryProps>
-                    <PropsValue value={getPropertyValue(getPropertyValue(props.countryInfo.currencies, 0), 0)}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Region'></CountryProps>
-                    <PropsValue value={props.countryInfo.region}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Languages'></CountryProps>
-                    <PropsValue value={getPropertyValue(props.countryInfo.languages, -1)}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Sub Region'></CountryProps>
-                    <PropsValue value={props.countryInfo.subRegion}></PropsValue>
-                </div>
-                <div className="props-name-value">
-                    <CountryProps props='Capital'></CountryProps>
-                    <PropsValue value={props.countryInfo.capital}></PropsValue>
+                <div className="row-gap column">
+                    <div className="props-name-value">
+                        <CountryProps props='Top Level Domain'></CountryProps>
+                        <PropsValue value={props.countryInfo.topLevelDomain}></PropsValue>
+                    </div>
+
+                    <div className="props-name-value">
+                        <CountryProps props='Currencies'></CountryProps>
+                        <PropsValue value={getPropertyValue(getPropertyValue(props.countryInfo.currencies, 0), 0)}></PropsValue>
+                    </div>
+
+                    <div className="props-name-value">
+                        <CountryProps props='Languages'></CountryProps>
+                        <PropsValue value={getPropertyValue(props.countryInfo.languages, -1)}></PropsValue>
+                    </div>
                 </div>
             </div>
             <div>
@@ -55,7 +62,7 @@ export default function CountryInfo(props: any) {
         if (typeof obj != 'undefined' && 'null') {
             const objArray = Object.getOwnPropertyNames(obj)
             if (index >= 0)
-                return propertyValue(obj, objArray[0], false)
+                return propertyValue(obj, objArray[index], false)
             else
                 return (propertyValue(obj, objArray, true))
         }

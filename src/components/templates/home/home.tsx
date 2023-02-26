@@ -34,9 +34,7 @@ export default function Home() {
 
     useEffect(() => { getCountries() }, []) // Run one time when the Home component is rendered.
     useEffect(() => { getPageCountries() }, [allCountries, region, countryByText]) // Runs everytime allCountries, region or countryByText are updated.
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-    }, [pseudoPage])
+    useEffect(() => { window.addEventListener('scroll', handleScroll) }, [pseudoPage])
 
     return (
         <>
@@ -72,8 +70,7 @@ export default function Home() {
         const windowHeight = document.documentElement.clientHeight;
         const documentHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const isBottom = scrollTop + windowHeight >= documentHeight;
-        console.log('ISBOTTOM> ', isBottom)
+        const isBottom = scrollTop + windowHeight >= documentHeight - (documentHeight * 0.05);
 
         if (isBottom) {
             setPseudoPage(pseudoPage + 1);
@@ -162,9 +159,4 @@ export default function Home() {
         }
         return countryList
     }
-
-    // setPerson({
-    //     ...person, // Copy the old fields
-    //     firstName: e.target.value // But override this one
-    //   });
 }

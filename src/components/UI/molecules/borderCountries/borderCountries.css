@@ -1,17 +1,15 @@
 #border-countries {
   min-width: max-content;
-
   display: flex;
-  gap: 0 10px;
+  align-items: center;
+  gap: 0 8px;
 }
 
 #mini-countries {
   display: flex;
+  justify-content: flex-start;
+
   max-width: 400px;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-}
-
-#mini-countries {
-  text-decoration: none;
 }

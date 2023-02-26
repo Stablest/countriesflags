@@ -9,8 +9,8 @@ body {
   color: var(--TextAndLightModeElements);
   display: flex;
   justify-content: center;
-
-  overflow: scroll;
+  overflow-y: scroll;
+  caret-color: transparent;
 }
 
 main {
@@ -23,10 +23,7 @@ main {
   height: 80px;
   margin: 0px auto;
   background-color: var(--Elements);
-  /* margin: 0px 100px;
-   */
   padding: 0px 60px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,13 +33,14 @@ main {
   width: 1440px;
   height: auto;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px red solid; */
 }
 
 a {
   text-decoration: none;
+}
+
+@media (max-width: 400px), screen and (orientation: portrait) {
 }
