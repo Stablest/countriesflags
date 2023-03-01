@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './components/templates/home/home'
 import {
+  createHashRouter,
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -12,7 +13,7 @@ import './components/styles/global.css'
 import './components/styles/theme.css'
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     index: true,
     path: "/",
