@@ -13,7 +13,7 @@ import './components/styles/global.css'
 import './components/styles/theme.css'
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     index: true,
     path: "/",
