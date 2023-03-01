@@ -13,28 +13,22 @@ import './components/styles/global.css'
 import './components/styles/theme.css'
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     index: true,
-    path: "/countriesflags/",
+    path: "/",
     element: <MainPage />,
     errorElement: <ErrorPage />,
-    // children: [ // nested route
-    //   {
-    //     path: "contacts/:contactId",
-    //     element: <Home />,
-    //   },
-    // ],
   },
   {
-    path: "/countriesflags/countryDetails/:id",
+    path: "/countryDetails/:id",
     element: <CountryDetailsPage />,
     errorElement: <ErrorPage></ErrorPage>,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>,
 )
