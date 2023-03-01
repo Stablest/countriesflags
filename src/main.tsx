@@ -14,6 +14,7 @@ import './components/styles/theme.css'
 
 const router = createBrowserRouter([
   {
+    index: true,
     path: "/",
     element: <MainPage />,
     errorElement: <ErrorPage />,
