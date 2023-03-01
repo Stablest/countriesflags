@@ -16,7 +16,7 @@ import './components/styles/theme.css'
 const router = createHashRouter([
   {
     index: true,
-    path: "/",
+    path: "/countriesflags/",
     element: <MainPage />,
     errorElement: <ErrorPage />,
     // children: [ // nested route
@@ -27,7 +27,7 @@ const router = createHashRouter([
     // ],
   },
   {
-    path: "countryDetails/:id",
+    path: "/countriesflags/countryDetails/:id",
     element: <CountryDetailsPage />,
     errorElement: <ErrorPage></ErrorPage>,
   },
