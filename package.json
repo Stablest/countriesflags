@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Stablest.github.io/countriesflags",
+  "homepage": "https://main--stablest-countriesflags.netlify.app/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
