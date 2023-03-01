@@ -11,7 +11,6 @@ export default function CountryDetailsPage() {
 
     const [param, setParam] = useState(useParams())
     const [id, setId] = useState(-1)
-    const [location, setLocation] = useState(useLocation())
     const [allCountries, setAllCountries] = useState<CountrySummaryType[]>([])
     const [countryInfo, setCountryInfo] = useState({} as CountrySummaryType)
 
@@ -52,6 +51,7 @@ export default function CountryDetailsPage() {
             const countryAux: CountrySummaryType = {
                 id: index,
                 flags: country.flags.shift(),
+                altSpellings: country.altSpellings[1] ? country.altSpellings[1] : 'country flag',
                 name: country.name.common,
                 nativeName: country.name.nativeName,
                 topLevelDomain: [...country.tld],

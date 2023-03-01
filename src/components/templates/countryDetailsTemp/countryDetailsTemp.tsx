@@ -8,16 +8,14 @@ import { Link } from "react-router-dom";
 
 export default function CountryDetailsTemp(props: any) {
     return (
-        <div className="container">
+        <div className="container-details-page">
             <div id="margin-button">
                 <Link to={'../'}>
                     <BackButton />
                 </Link>
             </div>
             <div id="container-flag-info">
-                <div className="container-img">
-                    <img src={props.countryInfo.flags} alt="" />
-                </div>
+                <img src={props.countryInfo.flags} alt={props.countryInfo.altSpellings ? props.countryInfo.altSpellings : 'country flag'} />
                 <CountryInfo allCountries={props.allCountries} countryInfo={props.countryInfo} />
             </div>
         </div>

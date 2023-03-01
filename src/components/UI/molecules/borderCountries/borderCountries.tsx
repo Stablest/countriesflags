@@ -16,14 +16,8 @@ export default function BorderCountries(props: any) {
 
 
     useEffect(() => {
-        // console.log('aaaa')
         setCountryBorder(getBorderFullCountry(props.borderCountries))
-        console.log('Lista de países que fazem fronteira : ', getBorderFullCountry(props.borderCountries))
     }, [allCountries])
-
-    useEffect(() => {
-        console.log('oi')
-    }, [country])
 
     return (
         <div id="border-countries">
@@ -46,10 +40,6 @@ export default function BorderCountries(props: any) {
         return list
     }
 
-    // function handleNavigate() {
-    //     navigate(0)
-    // }
-
     function getBorderFullCountry(tag: string | string[]): any {
         if (typeof allCountries != 'undefined' && 'null') {
             if (tag instanceof Array) {
@@ -60,7 +50,6 @@ export default function BorderCountries(props: any) {
                             list.push(country)
                     })
                 })
-                console.log('LISTA : ', list)
                 return list
             }
             else {

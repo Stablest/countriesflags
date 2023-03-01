@@ -9,6 +9,7 @@ import ErrorPage from "./error-page";
 import CountryDetailsPage from './routes/countryDetailsPage'
 import MainPage from './routes/MainPage'
 import './components/styles/global.css'
+import './components/styles/theme.css'
 
 
 const router = createBrowserRouter([

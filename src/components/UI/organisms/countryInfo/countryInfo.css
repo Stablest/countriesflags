@@ -1,7 +1,6 @@
 #country-info {
-  width: 600px;
-  height: 400px;
-  padding: 20px 40px;
+  /* width: 600px;
+  height: 400px; */
 
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@
 }
 
 #semi-table {
+  width: 100vw;
   display: flex;
   justify-content: space-between;
 }
@@ -27,6 +27,7 @@
 .row-gap {
   display: flex;
   row-gap: 10px;
+  width: 100%;
 }
 
 .column {
@@ -37,4 +38,23 @@
 #country-info > div:last-of-type {
   padding: 0px 0px;
   margin: 0px 0;
+}
+
+@media screen and (min-width: 280px) {
+  #country-info {
+    width: auto;
+    padding: 0;
+    gap: 20px 0;
+  }
+
+  #semi-table {
+    width: 100%;
+    flex-direction: column;
+    gap: 30px 0;
+  }
+
+  .props-name-value {
+    width: 100%;
+    overflow-wrap: break-word;
+  }
 }

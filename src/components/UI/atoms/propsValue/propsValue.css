@@ -1,6 +1,6 @@
 #props-value {
-  font-size: 0.74rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  max-width: 200px;
-  word-wrap: break-word;
+  /* max-width: 60%; */
+  overflow-wrap: break-word;
 }

@@ -1,6 +1,7 @@
 export type CountrySummaryType = {
   id: number;
   flags: string;
+  altSpellings: string;
   name: string;
   nativeName: {};
   topLevelDomain: string[];

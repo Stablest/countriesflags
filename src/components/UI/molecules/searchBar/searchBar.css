@@ -7,3 +7,15 @@
   align-items: center;
   caret-color: initial;
 }
+
+@media only screen and (min-width: 280px) {
+  .search-bar-box {
+    width: 220px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .search-bar-box {
+    width: 460px;
+  }
+}

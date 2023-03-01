@@ -4,4 +4,10 @@
   height: 60px;
   padding: 0px 10px;
   border: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.region-select option {
+  font-weight: 600;
 }

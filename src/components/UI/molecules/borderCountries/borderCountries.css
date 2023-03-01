@@ -1,5 +1,5 @@
 #border-countries {
-  min-width: max-content;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 0 8px;

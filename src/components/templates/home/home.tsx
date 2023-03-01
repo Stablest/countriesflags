@@ -10,6 +10,7 @@ export default function Home() {
     const baseCountry: CountrySummaryType = { // Base country for when an error occurs(e.g., if getCountries() can't get data from the api). 
         id: 0,
         flags: '',
+        altSpellings: '',
         name: '',
         nativeName: {},
         topLevelDomain: [],
@@ -29,11 +30,11 @@ export default function Home() {
     const [allCountries, setAllCountries] = useState<CountrySummaryType[]>([])
     const [pageCountries, setPageCountries] = useState<CountrySummaryType[]>([])
     const [region, setRegion] = useState('all')
-    const [countryByText, setCountryByText] = useState<string>('')
+    const [searchBarText, setSearchBarText] = useState<string>('')
     const [pseudoPage, setPseudoPage] = useState(0)
 
     useEffect(() => { getCountries() }, []) // Run one time when the Home component is rendered.
-    useEffect(() => { getPageCountries() }, [allCountries, region, countryByText]) // Runs everytime allCountries, region or countryByText are updated.
+    useEffect(() => { getPageCountries() }, [allCountries, region, searchBarText]) // Runs everytime allCountries, region or countryByText are updated.
     useEffect(() => { window.addEventListener('scroll', handleScroll) }, [pseudoPage])
 
     return (
@@ -49,7 +50,7 @@ export default function Home() {
 
     function multiCountrySummary() {
         let countriesList = [];
-        for (let i = 0; i < (pseudoPage + 1) * 16; i++) {
+        for (let i = 0; i < (pseudoPage + 1) * 96; i++) {
             pageCountries[i] ? countriesList.push(<CountrySummary key={i} id={i} country={pageCountries[i] ? pageCountries[i] : baseCountry} />) : 'error'
         }
         return (
@@ -62,19 +63,17 @@ export default function Home() {
     }
 
     function handleSearchBar(event: any) {
-        console.log('texto : ', event.target.value)
-        setCountryByText(event.target.value)
+        setSearchBarText(event.target.value)
     }
 
     function handleScroll(): void {
         const windowHeight = document.documentElement.clientHeight;
         const documentHeight = document.documentElement.scrollHeight;
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const isBottom = scrollTop + windowHeight >= documentHeight - (documentHeight * 0.05);
+        const isBottom = scrollTop + windowHeight >= documentHeight - (documentHeight * 0.1);
 
         if (isBottom) {
             setPseudoPage(pseudoPage + 1);
-            console.log('page')
         }
     }
 
@@ -91,6 +90,7 @@ export default function Home() {
             const countryAux: CountrySummaryType = {
                 id: index,
                 flags: country.flags.pop(),
+                altSpellings: country.altSpellings[1] ? country.altSpellings[1] : 'country flag',
                 name: country.name.common,
                 nativeName: country.name.nativeName,
                 topLevelDomain: [...country.tld],
@@ -108,7 +108,6 @@ export default function Home() {
             }
             countries.push(countryAux)
         });
-        console.log('Get Countries : OK')
         setAllCountries(countries)
     }
 
@@ -119,11 +118,10 @@ export default function Home() {
             countryList = randomCountriesList([...countryList])
             countryList = compareCountryName(countryList)
             setPageCountries(countryList)
-            console.log('getPage : OK')
         }
     }
 
-    function compareRegion(countryList: CountrySummaryType[]): CountrySummaryType[] {
+    function compareRegion(countryList: CountrySummaryType[]): CountrySummaryType[] { // Compare each country to the selected region
         if (region !== 'all') {
             allCountries.forEach(country => {
                 if (country.region.toUpperCase() == region.toUpperCase())
@@ -134,7 +132,7 @@ export default function Home() {
         return allCountries // Return all countries if region equals all
     }
 
-    function randomCountriesList(countryList: CountrySummaryType[]): CountrySummaryType[] {
+    function randomCountriesList(countryList: CountrySummaryType[]): CountrySummaryType[] { // Randomise countries positions
         const auxList: CountrySummaryType[] = []
         const availableIndex: number[] = []
         for (let i = 0; i < countryList.length; i++)
@@ -148,11 +146,11 @@ export default function Home() {
         return auxList
     }
 
-    function compareCountryName(countryList: CountrySummaryType[]): CountrySummaryType[] {
-        if (countryByText.length != 0) {
+    function compareCountryName(countryList: CountrySummaryType[]): CountrySummaryType[] { // Compare what's in the searchBarText with countries.
+        if (searchBarText.length != 0) {
             let list = new Array<CountrySummaryType>()
             for (let i = 0; i < countryList.length; i++) {
-                if (countryList[i].name.toUpperCase().includes(countryByText.toUpperCase()))
+                if (countryList[i].name.toUpperCase().includes(searchBarText.toUpperCase()))
                     list.push(countryList[i])
             }
             countryList = [...list]

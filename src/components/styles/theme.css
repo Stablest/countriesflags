@@ -1,0 +1,47 @@
+* {
+  color: var(--TextAndLightModeElements);
+}
+
+::placeholder {
+  color: var(--DarkGrayInput, --TextAndLightModeElements);
+}
+
+.container,
+.container-details-page {
+  background-color: var(--Background);
+}
+
+.box {
+  background-color: var(--Elements);
+}
+
+.search-bar-box {
+  background-color: var(--Elements);
+  box-shadow: var(--Shadow);
+}
+
+.search-bar-box img {
+  filter: var(--FilterSearch, --Filter);
+}
+
+#navbar,
+#search-description input {
+  background-color: var(--Elements);
+}
+
+#country-summary {
+  box-shadow: var(--Shadow);
+}
+
+.region-select,
+#country-summary img,
+#mini-country-box,
+#backButton {
+  background-color: var(--Elements);
+  box-shadow: var(--Shadow);
+}
+
+.dark-mode-img,
+#backButton img {
+  filter: var(--Filter);
+}
