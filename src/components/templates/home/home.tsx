@@ -103,7 +103,7 @@ export default function Home() {
                 region: country.region,
                 languages: country.languages,
                 subRegion: country.subregion,
-                capital: [...country.capital],
+                capital: country.capital[0],
                 borderCountries: [...country.borders],
             }
             countries.push(countryAux)
